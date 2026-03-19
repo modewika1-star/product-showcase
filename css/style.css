@@ -1,0 +1,192 @@
+/* Existing inline styles can stay, new grid demo styles here */
+
+/* Grid Demo Styles - Demonstrates ALL specified properties */
+
+.grid-demo-container {
+    margin-top: 80px;
+    padding: 40px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.grid-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.grid-controls label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.grid-controls label:hover {
+    background: #e3f2fd;
+}
+
+.grid-controls input[type="radio"]:checked+span {
+    font-weight: 700;
+    color: #007bff;
+}
+
+.demo-grid {
+    /* PARENT GRID PROPERTIES */
+    display: grid;
+
+    /* grid-template-columns: 4 columns with different widths using FR */
+    grid-template-columns: 1fr 2fr 1fr 2fr;
+
+    /* grid-template-rows: MIX of px and fr values */
+    grid-template-rows: 100px 200px 1fr 150px;
+
+    /* gap: 20px between items */
+    gap: 20px;
+
+    /* Default: justify-content and align-content controlled by radio buttons */
+    justify-content: start;
+    align-content: start;
+
+    /* justify-items: center items horizontally in cells */
+    justify-items: center;
+
+    /* align-items: center items vertically in cells */
+    align-items: center;
+
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    min-height: 800px;
+}
+
+/* Radio button controls for parent properties */
+.grid-controls input[name="justify-content"][value="center"]:checked~.demo-grid {
+    justify-content: center;
+}
+
+.grid-controls input[name="justify-content"][value="end"]:checked~.demo-grid {
+    justify-content: end;
+}
+
+.grid-controls input[name="justify-content"][value="stretch"]:checked~.demo-grid {
+    justify-content: stretch;
+}
+
+.grid-controls input[name="align-content"][value="center"]:checked~.demo-grid {
+    align-content: center;
+}
+
+.grid-controls input[name="align-content"][value="end"]:checked~.demo-grid {
+    align-content: end;
+}
+
+/* CHILD GRID PROPERTIES */
+.grid-item {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+}
+
+.grid-item::before {
+    content: attr(data-label);
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 8px;
+    opacity: 0.9;
+}
+
+/* Specific child spanning examples */
+.item-span {
+    /* grid-column: start / end */
+    grid-column: 1 / 3;
+    /* grid-row: start / end */
+    grid-row: 2 / 3;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.item-span-2 {
+    /* Larger span example */
+    grid-column: 3 / 5;
+    grid-row: 1 / 3;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Child self-alignment examples */
+.item-self-center {
+    /* justify-self: horizontal control in cell */
+    justify-self: center;
+    /* align-self: vertical control in cell */
+    align-self: center;
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.item-self-end {
+    justify-self: end;
+    align-self: end;
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Item 12 with image background */
+.item-12 {
+    background: url('../photo/Rectangle 2.png') center/cover;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive for demo */
+@media (max-width: 768px) {
+    .demo-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 120px 120px 120px 120px 120px 1fr;
+        gap: 15px;
+    }
+
+    .item-span {
+        grid-column: 1 / 3;
+        grid-row: auto;
+    }
+
+    .item-span-2 {
+        grid-column: 1 / 3;
+        grid-row: auto;
+    }
+}
+
+/* Property labels for education */
+.demo-grid::before {
+    content: 'Parent: display:grid | gap:20px | justify-items:center | align-items:center';
+    position: absolute;
+    top: -25px;
+    left: 40px;
+    background: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
